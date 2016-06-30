@@ -1,1 +1,0 @@
-# technowax.net

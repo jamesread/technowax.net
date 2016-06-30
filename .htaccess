@@ -1,0 +1,2 @@
+Redirect 301 /indenter /doForm.php?form=FormIndenter
+Redirect 301 /indent /doForm.php?form=FormIndenter
