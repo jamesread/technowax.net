@@ -23,7 +23,7 @@
 		</p>
 
 		<ul id = "navigation">
-		{foreach from = "$listLinks" item = "itemLink"}
+		{foreach from = $listLinks item = "itemLink"}
 			<li><a href = "{$itemLink.url}">{$itemLink.title}</a></li>
 		{/foreach}
 		</ul>

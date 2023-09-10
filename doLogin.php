@@ -1,11 +1,8 @@
 <?php
 
 require_once 'includes/common.php';
-require_once 'libAllure/util/FormLogin.php';
-require_once 'libAllure/AuthBackendOpenId.php';
-require_once 'libAllure/Logger.php';
 
-$openId = new AuthBackendOpenId('http://technowax.net/');
+$openId = new \libAllure\AuthBackendOpenId('http://technowax.net/');
 
 if (!$openId->getMode()) {
 	if (isset($_REQUEST['openId'])) {

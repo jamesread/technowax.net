@@ -1,7 +1,6 @@
 <?php
 
 require_once 'includes/common.php';
-require_once 'libAllure/HtmlLinksCollection.php';
 
 use libAllure\Session as Session;
 use libAllure\HtmlLinksCollection as HtmlLinksCollection;

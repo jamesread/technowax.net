@@ -1,0 +1,19 @@
+{
+    "name": "jread/technowax.net",
+    "type": "proect",
+    "require": {
+        "jwread/lib-allure": "^8.1",
+        "folha/lightopenid": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jread\\TechnowaxNet\\": "src/app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "jamesread",
+            "email": "contact@jread.com"
+        }
+    ]
+}

@@ -16,9 +16,13 @@ if ($stmt->numRows() == 0) {
 	$tpl->display('error.tpl');
 } else {
 	$wikiPage = $stmt->fetchRow();
-	$wikiPage['title'] = $sanitizer->escapeStringForHtml($wikiPage['title']);
-	$wikiPage['content'] = $sanitizer->escapeStringForHtml($wikiPage['content']);
-	$wikiPage['content'] = wikify($wikiPage['content']);
+        $wikiPage['title'] = $sanitizer->escapeStringForHtml($wikiPage['title']);
+
+        if (!empty($wikiPage['content'])) {
+            $wikiPage['content'] = $sanitizer->escapeStringForHtml($wikiPage['content']);
+            $wikiPage['content'] = wikify($wikiPage['content']);
+        }
+
 	$wikiPage['displayTitle'] = (empty($wikiPage['alt_title']) ? $wikiPage['title'] : $wikiPage['alt_title']) ;
 	$wikiPage['canEdit'] = Session::hasPriv('SUPERUSER');
 
