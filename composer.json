@@ -15,5 +15,9 @@
             "name": "jamesread",
             "email": "contact@jread.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10.3",
+        "phpmd/phpmd": "^2.13"
+    }
 }

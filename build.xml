@@ -1,7 +1,0 @@
-<project name = "technowax4" default = "test">
-	<target name = "test">
-		<exec executable = "phpunit">
-			<arg value = "src/utests/" />
-		</exec>
-	</target>
-</project>
