@@ -2,15 +2,15 @@
 
 require_once 'includes/widgets/header.php';
 
-// Hack because FormRegister needs a $db global.
-$db = \libAllure\DatabaseFactory::getInstance(); global $db;
+if ($cfg->get('ENABLE_REGISTRATION')) {
+    // Hack because FormRegister needs a $db global.
+    $db = \libAllure\DatabaseFactory::getInstance(); global $db;
 
-use \libAllure\FormHandler;
-
-$fh = new FormHandler('libAllure\util\FormRegister');
-$fh->handle();
-
+    $fh = new \libAllure\FormHandler('libAllure\util\FormRegister');
+    $fh->handle();
+} else {
+    $tpl->message('message', 'Registration is disabled');
+    $tpl->display('error.tpl');
+}
 
 require_once 'includes/widgets/footer.php';
-
-?>

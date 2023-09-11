@@ -18,7 +18,10 @@ if (Session::isLoggedIn()) {
     $menuAccount->add('doLogout.php', 'Logout');
 } else {
     $menuAccount->add('doLogin.php', 'Login');
-    $menuAccount->add('doRegister.php', 'Register');
+
+    if ($cfg->get('ENABLE_REGISTRATION')) {
+        $menuAccount->add('doRegister.php', 'Register');
+    }
 }
 
 $tpl->assign('isLoggedIn', Session::isLoggedIn());
