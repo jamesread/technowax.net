@@ -9,7 +9,7 @@ if ($cfg->get('ENABLE_REGISTRATION')) {
     $fh = new \libAllure\FormHandler('libAllure\util\FormRegister');
     $fh->handle();
 } else {
-    $tpl->message('message', 'Registration is disabled');
+    $tpl->assign('message', 'Registration is disabled');
     $tpl->display('error.tpl');
 }
 
