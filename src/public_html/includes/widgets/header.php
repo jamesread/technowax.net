@@ -9,12 +9,12 @@ $menu = new HtmlLinksCollection();
 $menu->add('index.php', 'Home');
 $menu->add('viewReference.php', 'Reference');
 $menu->add('viewTools.php', 'Tools');
-$menu->addIf(Session::isLoggedIn(), 'viewAccount.php', 'Account');
-$menu->addIfPriv('SUPERUSER', 'listUsers.php', 'Users');
 
 $menuAccount = new HtmlLinksCollection();
 
 if (Session::isLoggedIn()) {
+    $menuAccount->addIf(Session::isLoggedIn(), 'viewAccount.php', 'Account');
+    $menuAccount->addIfPriv('SUPERUSER', 'listUsers.php', 'Users');
     $menuAccount->add('doLogout.php', 'Logout');
 } else {
     $menuAccount->add('doLogin.php', 'Login');
