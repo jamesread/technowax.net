@@ -2,9 +2,20 @@
 
 require_once 'includes/widgets/header.php';
 
+<<<<<<< HEAD
+// Hack because FormRegister needs a $db global.
+$db = \libAllure\DatabaseFactory::getInstance();
+global $db;
+
+use libAllure\FormHandler;
+
+$fh = new FormHandler('libAllure\util\FormRegister');
+$fh->handle();
+=======
 if ($cfg->get('ENABLE_REGISTRATION')) {
     // Hack because FormRegister needs a $db global.
     $db = \libAllure\DatabaseFactory::getInstance(); global $db;
+>>>>>>> fba520ff85faa3a4f1cfdbf10d969c21f610c943
 
     $fh = new \libAllure\FormHandler('libAllure\util\FormRegister');
     $fh->handle();
