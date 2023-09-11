@@ -7,9 +7,7 @@ global $tpl;
 $tpl->assign('isLoggedIn', \libAllure\Session::isLoggedIn());
 
 if (defined('REDIRECT')) {
-	$tpl->assign('REDIRECT', REDIRECT);
+    $tpl->assign('REDIRECT', REDIRECT);
 }
 
 $tpl->display('header.minimal.tpl');
-
-?>

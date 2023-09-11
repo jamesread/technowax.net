@@ -43,5 +43,3 @@ use libAllure\Form as Form;
 Form::$fullyQualifiedElementNames = false;
 
 require_once 'includes/functions.php'; // requires autoloader
-
-?>

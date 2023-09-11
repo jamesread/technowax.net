@@ -2,12 +2,10 @@
 
 require_once 'includes/common.php';
 
-use \libAllure\Session;
+use libAllure\Session;
 
 if (Session::isLoggedIn()) {
-	Session::logout();
+    Session::logout();
 }
 
 redirect('index.php', 'See ya!');
-
-?>

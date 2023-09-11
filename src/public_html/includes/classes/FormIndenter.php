@@ -1,13 +1,15 @@
 <?php
 
-use \libAllure\ElementTextbox;
-use \libAllure\ElementNumeric;
-use \libAllure\ElementInput;
-use \libAllure\Sanitizer;
-use \libAllure\ElementCheckbox;
+use libAllure\ElementTextbox;
+use libAllure\ElementNumeric;
+use libAllure\ElementInput;
+use libAllure\Sanitizer;
+use libAllure\ElementCheckbox;
 
-class FormIndenter extends \libAllure\Form {
-    public function __construct() {
+class FormIndenter extends \libAllure\Form
+{
+    public function __construct()
+    {
         parent::__construct('formIndenter', 'Indenter');
 
         $this->addElement(new ElementTextbox('content', 'Content'));
@@ -18,7 +20,8 @@ class FormIndenter extends \libAllure\Form {
         $this->addDefaultButtons('Indent');
     }
 
-    public function process() {
+    public function process()
+    {
         $this->content = Sanitizer::getInstance()->escapeStringForHtml($this->getElementValue('content'));
         $this->content = wordwrap($this->content, $this->getElementValue('lineWidth'));
 
@@ -39,11 +42,10 @@ class FormIndenter extends \libAllure\Form {
         $this->content = $ret;
     }
 
-    public function renderOutput($tpl) {
+    public function renderOutput($tpl)
+    {
         $tpl->assign('message', $this->content);
         $tpl->assign('title', 'Indented content');
         $tpl->display('notification.tpl');
     }
 }
-
-?>

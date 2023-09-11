@@ -2,7 +2,7 @@
 
 require_once 'includes/common.php';
 
-use \libAllure\DatabaseFactory;
+use libAllure\DatabaseFactory;
 
 $san = \libAllure\Sanitizer::getInstance();
 
@@ -15,5 +15,3 @@ if (isset($_REQUEST['update'])) {
         'ident' => $san->filterString('ident', null),
     ]);
 }
-
-?>

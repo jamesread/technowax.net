@@ -2,8 +2,8 @@
 
 require_once 'includes/widgets/header.php';
 
-use \libAllure\Sanitizer as Sanitizer;
-use \libAllure\ElementHidden;
+use libAllure\Sanitizer as Sanitizer;
+use libAllure\ElementHidden;
 
 $form = Sanitizer::getInstance()->filterEnum('form', [
     'FormDnsLookup',
@@ -16,7 +16,7 @@ $form = Sanitizer::getInstance()->filterEnum('form', [
 if (!isset($form)) {
     $tpl->assign('message', 'Form Not Found: ' . $form);
     $tpl->display('error.tpl');
-    
+
     require_once 'includes/widgets/footer.php';
 }
 
@@ -26,14 +26,12 @@ $form = new $form();
 $form->addElement(new ElementHidden('form', null, get_class($form)));
 
 if ($form->validate()) {
-	$form->process();
+    $form->process();
 
-	$form->renderOutput($tpl);
+    $form->renderOutput($tpl);
 }
 
 $tpl->assignForm($form);
 $tpl->display('form.tpl');
 
 require_once 'includes/widgets/footer.php';
-
-?>

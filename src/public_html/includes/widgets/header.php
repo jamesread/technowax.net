@@ -25,5 +25,3 @@ $tpl->assign('isLoggedIn', Session::isLoggedIn());
 $tpl->assign('listLinks', $menu);
 $tpl->assign('listLinksAccount', $menuAccount);
 $tpl->display('header.tpl');
-
-?>

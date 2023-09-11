@@ -2,13 +2,15 @@
 
 require_once 'includes/widgets/header.php';
 
-use \libAllure\Form;
-use \libAllure\AuthBackend;
-use \libAllure\Session;
-use \libAllure\ElementPassword;
+use libAllure\Form;
+use libAllure\AuthBackend;
+use libAllure\Session;
+use libAllure\ElementPassword;
 
-class FormChangePassword extends Form {
-    public function __construct() {
+class FormChangePassword extends Form
+{
+    public function __construct()
+    {
         parent::__construct(null, 'Change Password');
 
         $this->addElement(new ElementPassword('password1', 'Password'));
@@ -16,13 +18,15 @@ class FormChangePassword extends Form {
         $this->addDefaultButtons();
     }
 
-    public function validateExtended() {
+    public function validateExtended()
+    {
         if ($this->getElementValue('password1') != $this->getElementValue('password2')) {
             $this->getElement('password2')->setElementError('Password does not match.');
         }
     }
 
-    public function process() {
+    public function process()
+    {
         $sql = 'UPDATE users SET password = :password WHERE username = :username';
         $stmt = stmt($sql);
         $stmt->bindValue(':password', AuthBackend::getBackend()->hashPassword($this->getElementValue('password1')));
@@ -36,5 +40,3 @@ $fh->setRedirect('viewAccount.php');
 $fh->handle();
 
 require_once 'includes/widgets/footer.php';
-
-?>

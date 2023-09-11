@@ -1,12 +1,14 @@
 <?php
 
-use \libAllure\Form;
-use \libAllure\Sanitizer;
-use \libAllure\ElementInput;
-use \libAllure\ElementSelect;
+use libAllure\Form;
+use libAllure\Sanitizer;
+use libAllure\ElementInput;
+use libAllure\ElementSelect;
 
-class FormDnsLookup extends Form {
-    public function __construct() {
+class FormDnsLookup extends Form
+{
+    public function __construct()
+    {
         parent::__construct('formDnsLookup', 'DNS Lookup');
 
         $this->addElement(new ElementInput('dnsName', 'DNS Name'));
@@ -20,7 +22,8 @@ class FormDnsLookup extends Form {
         $this->addDefaultButtons('lookup');
     }
 
-    public function process() {
+    public function process()
+    {
         $sanitizer = new Sanitizer();
 
         $this->result = array();
@@ -30,10 +33,9 @@ class FormDnsLookup extends Form {
         }
     }
 
-    public function renderOutput($tpl) {
+    public function renderOutput($tpl)
+    {
         $tpl->assign('rows', $this->result);
         $tpl->display('dnsQueryResults.tpl');
     }
 }
-
-?>

@@ -2,8 +2,8 @@
 
 require_once 'includes/common.php';
 
-use \libAllure\Sanitizer;
-use \libAllure\DatabaseFactory;
+use libAllure\Sanitizer;
+use libAllure\DatabaseFactory;
 
 $sanitizer = new Sanitizer();
 
@@ -13,5 +13,3 @@ $stmt->bindValue(':title', $sanitizer->filterIdentifier('title'));
 $stmt->execute();
 
 redirect('viewWikiPage.php?title=' . $sanitizer->filterIdentifier('title'), 'Page created.');
-
-?>

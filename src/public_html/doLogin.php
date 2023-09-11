@@ -21,7 +21,7 @@ if ($enableOpenId) {
     }
 }
 
-use \libAllure\Logger;
+use libAllure\Logger;
 
 $f = new \libAllure\util\FormLogin();
 
@@ -49,5 +49,3 @@ $tpl->assign('enableOpenId', $enableOpenId);
 $tpl->display('login.tpl');
 
 require_once 'includes/widgets/footer.php';
-
-?>

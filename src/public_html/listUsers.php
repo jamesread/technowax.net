@@ -13,4 +13,3 @@ $tpl->assign('listUsers', $listUsers);
 $tpl->display('listUsers.tpl');
 
 require_once 'includes/widgets/footer.php';
-?>

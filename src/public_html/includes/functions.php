@@ -1,9 +1,10 @@
 <?php
 
-use \libAllure\DatabaseFactory;
-use \libAllure\Session;
+use libAllure\DatabaseFactory;
+use libAllure\Session;
 
-function getEnclosedTag($content) {
+function getEnclosedTag($content)
+{
     $matches = array();
 
     preg_match('#<([\w\d]+[ =\"\w]?)>[\w\d ]+<\/\\1>#', $content, $matches) > 0;
@@ -17,7 +18,8 @@ function getEnclosedTag($content) {
     }
 }
 
-function isBlockTag($tag) {
+function isBlockTag($tag)
+{
     if (empty($tag)) {
         return false;
     }
@@ -27,7 +29,8 @@ function isBlockTag($tag) {
     ));
 }
 
-function nl2p($text) {
+function nl2p($text)
+{
     $ret = '';
 
     foreach (explode("\r\n\r\n", $text) as $paragraph) {
@@ -45,7 +48,8 @@ function nl2p($text) {
     return $ret;
 }
 
-function wikify($content) {
+function wikify($content)
+{
     $content = preg_replace(
         array(
             '#\[code\]#',
@@ -67,7 +71,6 @@ function wikify($content) {
                         '#\|\}#',
                         '#\|([ \w\d]+)#',
         ),
-
         array(
             '<p class = "code">',
             '</p>',
@@ -96,7 +99,8 @@ function wikify($content) {
     return $content;
 }
 
-function redirect($url, $reason) {
+function redirect($url, $reason)
+{
     define('REDIRECT', $url);
     if (!in_array('includes/widgets/header.php', get_included_files())) {
         require_once 'includes/widgets/header.minimal.php';
@@ -109,26 +113,28 @@ function redirect($url, $reason) {
     require_once 'includes/widgets/footer.minimal.php';
 }
 
-function requirePriv($priv, $redirect) {
+function requirePriv($priv, $redirect)
+{
     if (!Session::hasPriv($priv)) {
         redirect($redirect, 'No permissions.');
     }
 }
 
-function stmt($sql) {
+function stmt($sql)
+{
     return DatabaseFactory::getInstance()->prepare($sql);
 }
 
-function stmtFetchAll($sql) {
+function stmtFetchAll($sql)
+{
     $stmt = stmt($sql);
     $stmt->execute();
     return $stmt->fetchAll();
 }
 
-function newFormHandler($form) {
+function newFormHandler($form)
+{
     require_once 'libAllure/FormHandler.php';
 
     return new \libAllure\FormHandler($form);
 }
-
-?>
