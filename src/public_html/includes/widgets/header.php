@@ -7,8 +7,8 @@ use libAllure\HtmlLinksCollection as HtmlLinksCollection;
 
 $menu = new HtmlLinksCollection();
 $menu->add('index.php', 'Home');
-$menu->add('viewReference.php', 'Reference');
 $menu->add('viewTools.php', 'Tools');
+$menu->add('viewReference.php', 'Reference');
 
 $menuAccount = new HtmlLinksCollection();
 
