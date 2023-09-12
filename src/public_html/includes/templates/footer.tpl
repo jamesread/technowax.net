@@ -1,7 +1,7 @@
 	</main>
 
-	<div id = "footer">
+	<footer>
 		<p>&copy; <a href = "viewWikiPage.php?title=theTeam">technowax.net Admin Team</a></p>
-	</div>
+	</footer>
 </body>
 </html>

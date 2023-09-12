@@ -7,14 +7,18 @@ function startupError($message)
     exit;
 }
 
-
 (@include_once '../../vendor/autoload.php') or startupError('Could not include autoload.php, is Composer setup?');
+
+$localConfigDir = '.';
+
+@include_once 'common.local.php';
 
 \libAllure\ErrorHandler::getInstance()->beGreedy();
 
 $cfg = new \libAllure\ConfigFile();
 $cfg->tryLoad([
-    '/etc/technowax.net/'
+    $localConfigDir,
+    '/etc/technowax.net/',
 ]);
 
 $tpl = new libAllure\Template('technowaxNe');
