@@ -7,9 +7,8 @@ use libAllure\HtmlLinksCollection as HtmlLinksCollection;
 
 $menu = new HtmlLinksCollection();
 $menu->add('index.php', 'Home');
+$menu->add('viewMarkdown.php', 'Document Repos');
 $menu->add('viewTools.php', 'Tools');
-$menu->add('viewWikiPage.php?title=reference', 'Reference');
-$menu->add('viewMarkdown.php', 'Repos');
 
 $menuAccount = new HtmlLinksCollection();
 

@@ -195,7 +195,7 @@ span.subtle {
 }
 
 a[href^="doRegister"] {
-	color: red !important;
+	color: pink !important;
 	font-weight: bold;
 }
 
