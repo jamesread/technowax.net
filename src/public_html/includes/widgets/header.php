@@ -8,7 +8,7 @@ use libAllure\HtmlLinksCollection as HtmlLinksCollection;
 $menu = new HtmlLinksCollection();
 $menu->add('index.php', 'Home');
 $menu->add('viewTools.php', 'Tools');
-$menu->add('viewReference.php', 'Reference');
+$menu->add('viewWikiPage.php?title=reference', 'Reference');
 
 $menuAccount = new HtmlLinksCollection();
 
@@ -18,6 +18,7 @@ if (Session::isLoggedIn()) {
     $menuAccount->add('doLogout.php', 'Logout');
 } else {
     $menuAccount->add('doLogin.php', 'Login');
+    $menuAccount->add('account.php', 'Services');
 
     if ($cfg->get('ENABLE_REGISTRATION')) {
         $menuAccount->add('doRegister.php', 'Register');
