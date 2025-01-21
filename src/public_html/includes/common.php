@@ -16,7 +16,7 @@ $localConfigDir = '.';
 \libAllure\ErrorHandler::getInstance()->beGreedy();
 
 $cfg = new \libAllure\ConfigFile();
-$cfg->tryLoad([
+$cfg->loadFromPaths([
     $localConfigDir,
     '/etc/technowax.net/',
 ]);
