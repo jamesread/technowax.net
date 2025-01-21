@@ -13,12 +13,13 @@ $menu->add('viewWikiPage.php?title=reference', 'Reference');
 $menuAccount = new HtmlLinksCollection();
 
 if (Session::isLoggedIn()) {
+    $menu->add('account.php', 'Services');
+
     $menuAccount->addIf(Session::isLoggedIn(), 'viewAccount.php', 'Account');
     $menuAccount->addIfPriv('SUPERUSER', 'listUsers.php', 'Users');
     $menuAccount->add('doLogout.php', 'Logout');
 } else {
     $menuAccount->add('doLogin.php', 'Login');
-    $menuAccount->add('account.php', 'Services');
 
     if ($cfg->get('ENABLE_REGISTRATION')) {
         $menuAccount->add('doRegister.php', 'Register');
