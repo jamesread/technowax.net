@@ -9,6 +9,7 @@ $menu = new HtmlLinksCollection();
 $menu->add('index.php', 'Home');
 $menu->add('viewTools.php', 'Tools');
 $menu->add('viewWikiPage.php?title=reference', 'Reference');
+$menu->add('viewMarkdown.php', 'Repos');
 
 $menuAccount = new HtmlLinksCollection();
 
