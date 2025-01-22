@@ -8,6 +8,7 @@ body {
 	margin: 0;
   grid-template: "header" auto "nav" auto "main" auto "footer" auto;
   height: 100%;
+	background-color: #dee3e7;
 }
 
 body.minimal {
@@ -43,6 +44,23 @@ header {
 header p {
 	margin: 0;
 	margin-left: 1em;
+}
+
+section {
+  background-color: white;
+  padding: 1em;
+  border-radius: .4em;
+  margin-bottom: 1em;
+  box-shadow: 0 0 .5em #9a9a9a;
+}
+
+section h2 {
+	margin: 0;
+}
+
+section h1:first-child {
+  font-size: small;
+  margin: 0;
 }
 
 nav {
@@ -96,7 +114,7 @@ a:hover {
 	text-decoration: underline;
 }
 
-a.external {
+a.external, a.external:visited {
 	color: deepskyblue;
 }
 
@@ -203,17 +221,17 @@ button {
   padding: .6em;
   border: 0;
   text-transform: uppercase;
-  background-color: white;
+  background-color: lightgreen;
+  font-weight: bold;
   color: black;
-  border: 1px solid #666;
+  border: 1px solid #ccc;
   border-radius: .4em;
+  font-size: 1.1em;
 }
 
 button:hover {
-  background-color: black;
-  color: white;
+  background-color: #81e481;
   cursor: pointer;
-  border: 1px solid black;
 }
 
 #sidebarToggle {

@@ -7,6 +7,8 @@ class FormNumberFormatter extends Form
 {
     public function __construct()
     {
+        parent::__construct('formNumberFormatted', 'Number Formatter');
+
         $this->addElement(new ElementNumeric('number', 'Number'));
         $this->addDefaultButtons();
     }

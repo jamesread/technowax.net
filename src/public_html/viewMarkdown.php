@@ -26,6 +26,8 @@ if ($path != '') {
     }
 }
 
+echo '<section>';
+
 if ($path == '') {
     echo '<h2>Repo browser</h2>';
 } else {
@@ -72,6 +74,8 @@ foreach ($files as $dirfile) {
 }
 echo '</ul>';
 
+echo '</section><section>';
+
 if ($file != '') {
 
     // check file mimetype
@@ -96,5 +100,7 @@ if ($file != '') {
 
     echo $md;
 }
+
+echo '</section>';
 
 require_once 'includes/widgets/footer.php';

@@ -15,7 +15,7 @@ class FormChangePassword extends Form
 
         $this->addElement(new ElementPassword('password1', 'Password'));
         $this->addElement(new ElementPassword('password2', 'Password (Confirm)'));
-        $this->addDefaultButtons();
+        $this->addDefaultButtons('Change password');
     }
 
     public function validateExtended()

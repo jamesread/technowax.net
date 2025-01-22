@@ -6,7 +6,7 @@
 	<link rel = "stylesheet" type = "text/css" href = "resources/stylesheets/main.css" />
 
 	{if isset($REDIRECT)}
-	<meta http-equiv = "Refresh" content = "3; url = {$REDIRECT}" />
+	<meta http-equiv = "Refresh" content = "0; url = {$REDIRECT}" />
 	{/if}	
 </head>
 

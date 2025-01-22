@@ -1,7 +1,5 @@
 <div>
-	<div style = "display: inline-block">
 	{include file = "form.tpl"}
-	</div>
 
 	{if $enableOpenId}
 	<div style = "display: inline-block; border-left: 1px solid black;">

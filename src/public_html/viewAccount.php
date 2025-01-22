@@ -5,7 +5,7 @@ require_once 'includes/common.php';
 use libAllure\Session as Session;
 
 if (!Session::isLoggedIn()) {
-    redirect('index.php', 'You need to be logged in to view your account.');
+    simpleFatalError('You are not logged in.');
 }
 
 require_once 'includes/widgets/header.php';

@@ -50,47 +50,30 @@ function nl2p($text)
 
 function wikify($content)
 {
+    $replacements = [
+        '#\[code\]#' => '<p class = "code">',
+        '#\[\/code\]#' => '</p>',
+        '#\*([\w ]+)\*#' => '<strong>$1</strong>',
+        '#\n[\*-] ([\S ]+)#' => '<li>$1</li>',
+        '#\_(\w+)\_#' => '<u>$1</u>',
+        '#\/(\w+)\/#' => '<em>$1</em>',
+        '#\[\[([\w ]+?)\|([\w ]+?)\]\]#'       => '<a href = "viewWikiPage.php?title=$1">$2</a>',
+        '#\[\[(\w+)\]\]#'                   => '<a href = "viewWikiPage.php?title=$1>$1</a>',
+        '#\[(\S+)\|([ \S]+)\]#'             => '<a href = "$1" class = "external">$2</a>',
+        '#\{([\S]+)\|([\S ]+)\}#'           => '<a href = "$1">$2</a>',
+        '#\#\#\# ([ \w]+)#' => '<h4>$1</h4>',
+        '#\#\# ([ \w]+)#' => '<h3>$1</h3>',
+        '#\# ([ \w]+)#' => '<h2>$1</h2>',
+        '#\[list\]#' => '<ul>',
+        '#\[\/list\]#' => '</ul>',
+        '#\{\|#' => '<table>',
+        '#\|\}#' => '</table>',
+        '#\|([ \w\d]+)#' => '<td>$1</td>',
+    ];
+
     $content = preg_replace(
-        array(
-            '#\[code\]#',
-            '#\[\/code\]#',
-            '#\*([\w ]+)\*#',
-            '#\n[\*-] ([\S ]+)#',
-            '#\_(\w+)\_#',
-            '#\/(\w+)\/#',
-            '#\[\[(\w+)\|([ \d\w]+)\]\]#',
-            '#\[\[(\w+)\]\]#',
-            '#\[(\S+)\|([ \S]+)\]#',
-            '#\{([\S]+)\|([\S ]+)\}#',
-            '#\#\#\# ([ \w]+)#',
-                '#\#\# ([ \w]+)#',
-                    '#\# ([ \w]+)#',
-                        '#\[list\]#',
-                        '#\[\/list\]#',
-                        '#\{\|#',
-                        '#\|\}#',
-                        '#\|([ \w\d]+)#',
-        ),
-        array(
-            '<p class = "code">',
-            '</p>',
-            '<strong>$1</strong>',
-            '<li>$1</li>',
-            '<u>$1</u>',
-            '<em>$1</em>',
-            '<a href = "viewWikiPage.php?title=$1">$2</a>',
-            '<a href = "viewWikiPage.php?title=$1">$1</a>',
-            '<a href = "$1" class = "external">$2</a>',
-            '<a href = "$1">$2</a>',
-            '<h4>$1</h4>',
-            '<h3>$1</h3>',
-            '<h2>$1</h2>',
-            '<ul>',
-            '</ul>',
-            '<table>',
-            '</table>',
-            '<td>$1</td>',
-        ),
+        array_keys($replacements),
+        array_values($replacements),
         $content
     );
 
@@ -101,6 +84,8 @@ function wikify($content)
 
 function redirect($url, $reason)
 {
+    header('Location:' . $url);
+
     define('REDIRECT', $url);
     if (!in_array('includes/widgets/header.php', get_included_files())) {
         require_once 'includes/widgets/header.minimal.php';
@@ -108,6 +93,18 @@ function redirect($url, $reason)
 
     $tpl->assign('title', 'Redirecting: ' . $reason);
     $tpl->assign('message', '<p>You are being redirected to <a href = "' . $url . '">here</a>.</p>');
+    $tpl->display('notification.tpl');
+
+    require_once 'includes/widgets/footer.minimal.php';
+}
+
+function simpleFatalError($message) 
+{
+    global $tpl;
+
+    require_once 'includes/widgets/header.php';
+
+    $tpl->assign('message', '<p>' . $message . '</p>');
     $tpl->display('notification.tpl');
 
     require_once 'includes/widgets/footer.minimal.php';
@@ -134,7 +131,5 @@ function stmtFetchAll($sql)
 
 function newFormHandler($form)
 {
-    require_once 'libAllure/FormHandler.php';
-
     return new \libAllure\FormHandler($form);
 }
