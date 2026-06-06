@@ -4,7 +4,7 @@
 
 <p>You can update this list by having your DynDns client make a HTTP query with the following syntax; </p>
 
-<p><tt>http://www.technowax.net/dyndns.php?update&amp;user=<strong>{$userId}</strong>&amp;ident=<strong>yourString</strong></tt></p>
+<p><tt>http://www.technowax.net/dyndns?update&amp;user=<strong>{$userId}</strong>&amp;ident=<strong>yourString</strong></tt></p>
 
 <p>The query string parameters are documented like this:
 	<dl>

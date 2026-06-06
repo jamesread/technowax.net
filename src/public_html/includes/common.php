@@ -2,7 +2,7 @@
 
 function startupError($message)
 {
-    echo '<strong>Startup error: </strong>' . $message;
+    echo '<strong>Startup error: </strong>'.$message;
 
     exit;
 }
@@ -13,24 +13,29 @@ $localConfigDir = '.';
 
 @include_once 'common.local.php';
 
-\libAllure\ErrorHandler::getInstance()->beGreedy();
+ErrorHandler::getInstance()->beGreedy();
 
-$cfg = new \libAllure\ConfigFile();
+$cfg = new ConfigFile;
 $cfg->loadFromPaths([
     $localConfigDir,
     '/etc/technowax.net/',
 ]);
 
-$tpl = new libAllure\Template('technowaxNe');
+$tpl = new Template('technowaxNe');
+
+$GLOBALS['cfg'] = $cfg;
+$GLOBALS['tpl'] = $tpl;
 
 use libAllure\DatabaseFactory;
 
-DatabaseFactory::registerInstance(new libAllure\Database($cfg->getDsn(), $cfg->get('DB_USER'), $cfg->get('DB_PASS')));
+DatabaseFactory::registerInstance(new Database($cfg->getDsn(), $cfg->get('DB_USER'), $cfg->get('DB_PASS')));
+$db = DatabaseFactory::getInstance();
+$GLOBALS['db'] = $db;
 
 use libAllure\AuthBackend;
 use libAllure\AuthBackendDatabase;
 
-AuthBackend::setBackend(new AuthBackendDatabase());
+AuthBackend::setBackend(new AuthBackendDatabase);
 
 use libAllure\Session;
 
@@ -40,9 +45,11 @@ Session::start();
 
 date_default_timezone_set('UTC');
 
-use libAllure\Sanitizer as Sanitizer;
-
-use libAllure\Form as Form;
+use libAllure\ConfigFile;
+use libAllure\Database;
+use libAllure\ErrorHandler;
+use libAllure\Form;
+use libAllure\Template;
 
 Form::$fullyQualifiedElementNames = false;
 

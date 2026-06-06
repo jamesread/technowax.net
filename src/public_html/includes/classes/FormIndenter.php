@@ -1,13 +1,16 @@
 <?php
 
-use libAllure\ElementTextbox;
-use libAllure\ElementNumeric;
-use libAllure\ElementInput;
-use libAllure\Sanitizer;
 use libAllure\ElementCheckbox;
+use libAllure\ElementInput;
+use libAllure\ElementNumeric;
+use libAllure\ElementTextbox;
+use libAllure\Form;
+use libAllure\Sanitizer;
 
-class FormIndenter extends \libAllure\Form
+class FormIndenter extends Form
 {
+    private string $content = '';
+
     public function __construct()
     {
         parent::__construct('formIndenter', 'Indenter');
@@ -15,7 +18,7 @@ class FormIndenter extends \libAllure\Form
         $this->addElement(new ElementTextbox('content', 'Content'));
         $this->addElement(new ElementNumeric('lineWidth', 'Line width', 80));
         $this->addElement(new ElementInput('prefix', 'Prefix', '> '))->setMinMaxLengths(0, 10);
-        $this->addElement(new ElementCheckBox('removeExtraNewlines', 'Remove extra newlines', true));
+        $this->addElement(new ElementCheckbox('removeExtraNewlines', 'Remove extra newlines', true));
 
         $this->addDefaultButtons('Indent');
     }
@@ -35,10 +38,10 @@ class FormIndenter extends \libAllure\Form
         }
 
         foreach (explode("\n", $content) as $line) {
-            $ret .= $prefix . $line . "\n";
+            $ret .= $prefix.$line."\n";
         }
 
-        $ret = '<pre>' . $ret . '</pre>';
+        $ret = '<pre>'.$ret.'</pre>';
         $this->content = $ret;
     }
 

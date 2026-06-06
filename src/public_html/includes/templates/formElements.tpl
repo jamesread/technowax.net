@@ -19,7 +19,7 @@
 
 				<div>
 					{if $element->description ne ''}
-					<p class = "description"><img src = "resources/images/icons/help.png" class = "imageIcon" alt = "Form element help" />{$element->description}</p>
+					<p class = "description"><img src = "/resources/images/icons/help.png" class = "imageIcon" alt = "Form element help" />{$element->description}</p>
 					{/if}
 
 					{if $element->getValidationError() ne ''}

@@ -1,10 +1,13 @@
 <?php
 
-use libAllure\ElementTextbox;
 use libAllure\ElementNumeric;
+use libAllure\ElementTextbox;
+use libAllure\Form;
 
-class FormTeamMaker extends \libAllure\Form
+class FormTeamMaker extends Form
 {
+    private array $completedTeamList = [];
+
     public function __construct()
     {
         parent::__construct('formTeamMaker', 'Make teams');
@@ -13,13 +16,11 @@ class FormTeamMaker extends \libAllure\Form
         $elementTeamCount = $this->addElement(new ElementNumeric('teamCount', 'Team count'));
         $elementTeamCount->setBounds(2, 100);
 
-        $this->requireFields(array('teamList', 'teamCount'));
+        $this->requireFields(['teamList', 'teamCount']);
         $this->addDefaultButtons();
     }
 
-    public function validateInternals()
-    {
-    }
+    public function validateInternals() {}
 
     public function process()
     {
@@ -31,14 +32,14 @@ class FormTeamMaker extends \libAllure\Form
         $teamCount = $this->getElementValue('teamCount') - 1;
         $membersPerTeam = count($members) / $teamCount;
 
-        $teams = array();
+        $teams = [];
         $currentTeam = 0;
 
         for ($i = 0; $i < count($members); $i++) {
             $currentTeam = ($currentTeam == $teamCount) ? 0 : $currentTeam + 1;
 
-            if (!isset($teams[$currentTeam])) {
-                $teams[$currentTeam] = array();
+            if (! isset($teams[$currentTeam])) {
+                $teams[$currentTeam] = [];
             }
 
             $teams[$currentTeam][] = $members[$i];

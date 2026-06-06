@@ -43,3 +43,5 @@ CREATE TABLE `wiki_pages` (
 
 -- Dump completed on 2023-09-11 11:22:31
 -- +migrate Down
+
+DROP TABLE IF EXISTS `wiki_pages`;

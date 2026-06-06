@@ -2,7 +2,7 @@
 
 require_once 'includes/common.php';
 
-requirePriv('SUPERUSER', 'index.php');
+requirePriv('SUPERUSER', '/');
 
 require_once 'includes/widgets/header.php';
 

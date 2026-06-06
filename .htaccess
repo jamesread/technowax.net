@@ -1,2 +1,7 @@
-Redirect 301 /indenter /doForm.php?form=FormIndenter
-Redirect 301 /indent /doForm.php?form=FormIndenter
+# Apache document root should be public/ (Laravel).
+# If the vhost points at the repo root instead, forward requests into public/.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

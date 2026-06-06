@@ -2,10 +2,10 @@
 
 require_once 'includes/widgets/header.php';
 
-use libAllure\Form;
 use libAllure\AuthBackend;
-use libAllure\Session;
 use libAllure\ElementPassword;
+use libAllure\Form;
+use libAllure\Session;
 
 class FormChangePassword extends Form
 {
@@ -36,7 +36,7 @@ class FormChangePassword extends Form
 }
 
 $fh = newFormHandler('FormChangePassword');
-$fh->setRedirect('viewAccount.php');
+$fh->setRedirect('/account');
 $fh->handle();
 
 require_once 'includes/widgets/footer.php';

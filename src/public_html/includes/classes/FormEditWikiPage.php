@@ -1,17 +1,23 @@
 <?php
 
+use libAllure\DatabaseFactory;
 use libAllure\ElementAlphaNumeric;
 use libAllure\ElementTextbox;
-use libAllure\DatabaseFactory as DatabaseFactory;
+use libAllure\Form;
+use libAllure\Sanitizer;
 
-class FormEditWikiPage extends libAllure\Form
+class FormEditWikiPage extends Form
 {
+    private array $wikiPage;
+
+    private Sanitizer $sanitizer;
+
     public function __construct($pageTitle)
     {
         parent::__construct('editWikiPage', 'Edit Wiki Page');
 
         $this->wikiPage = $this->getWikiPage($pageTitle);
-        $this->sanitizer = \libAllure\Sanitizer::getInstance();
+        $this->sanitizer = Sanitizer::getInstance();
 
         $this->addElement(new ElementAlphaNumeric('alt_title', 'Alt title', $this->sanitizer->escapeStringForHtml($this->wikiPage['alt_title'])));
         $this->getElement('alt_title')->setMinMaxLengths(0, 64);

@@ -1,5 +1,5 @@
 <h2>DNS Query Results</h2>
-<p>You will probably only care about the A records. For a full list of types, check out the <a href = "viewWikiPage.php?title=dnsRecords">dns records</a> page.</p>
+<p>You will probably only care about the A records. For a full list of types, check out the <a href = "/wiki/dnsRecords">dns records</a> page.</p>
 <table>
 	<thead>
 		<tr>

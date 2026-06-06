@@ -1,12 +1,14 @@
 <?php
 
-use libAllure\Form;
-use libAllure\Sanitizer;
 use libAllure\ElementInput;
 use libAllure\ElementSelect;
+use libAllure\Form;
+use libAllure\Sanitizer;
 
 class FormDnsLookup extends Form
 {
+    private array $result = [];
+
     public function __construct()
     {
         parent::__construct('formDnsLookup', 'DNS Lookup');
@@ -24,9 +26,9 @@ class FormDnsLookup extends Form
 
     public function process()
     {
-        $sanitizer = new Sanitizer();
+        $sanitizer = new Sanitizer;
 
-        $this->result = array();
+        $this->result = [];
 
         foreach (dns_get_record($sanitizer->filterString('dnsName'), $this->getElementValue('recordType')) as $result) {
             $this->result[] = $result;

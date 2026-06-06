@@ -17,16 +17,17 @@
 
 	{/if}
 
-	<h3>Options</h3>
+	<h3>Account</h3>
 	<ul>
-		<li><a href = "changePassword.php">Change my password</a></li>
+		<li><a href = "/change-password">Change my password</a></li>
 	</ul>
 
-	<h3>Services</h3>
+	<h3>My services</h3>
+
+	<p>Manage services tied to your account. Overview and documentation: <a href = "/services">Services</a>.</p>
 
 	<dl>
-		<dt><a href = "listDynamicDnsUpdates.php">dyndns</a></dt>
-		<dd>Records a dynamic DNS address.</dd>
-
+		<dt><a href = "/dyndns/updates">Dynamic DNS</a></dt>
+		<dd>View update history and your personal HTTP update endpoint.</dd>
 	</dl>
 </section>

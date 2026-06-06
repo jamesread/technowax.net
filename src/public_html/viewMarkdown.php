@@ -2,17 +2,19 @@
 
 require_once 'includes/widgets/header.php';
 
-use \libAllure\Sanitizer;
+use cebe\markdown\GithubMarkdown;
+use libAllure\exceptions\SimpleFatalError;
+use libAllure\Sanitizer;
 
-$base = __DIR__ . '/repos/';
+$base = __DIR__.'/repos/';
 
 $path = Sanitizer::getInstance()->filterString('path');
 $file = Sanitizer::getInstance()->filterString('file');
 
 if ($file == '') {
-    if (file_exists($base . $path . '/README.md')) {
+    if (file_exists($base.$path.'/README.md')) {
         $file = 'README.md';
-    } else if (file_exists($base . $path . '/index.md')) {
+    } elseif (file_exists($base.$path.'/index.md')) {
         $file = 'index.md';
     }
 } else {
@@ -33,13 +35,13 @@ if ($path == '') {
 } else {
     $pathComponents = explode('/', $path);
 
-    echo '<h2><a href = "viewMarkdown.php">Repos</a> &raquo;';
+    echo '<h2><a href = "/markdown">Repos</a> &raquo;';
 
     foreach ($pathComponents as $index => $component) {
         if ($index == count($pathComponents) - 1) {
-            echo ' ' . $component;
+            echo ' '.$component;
         } else {
-            echo ' <a href="viewMarkdown.php?path=' . implode('/', array_slice($pathComponents, 0, $index + 1)) . '/">' . $component . '</a> &raquo;';
+            echo ' <a href="/markdown?path='.implode('/', array_slice($pathComponents, 0, $index + 1)).'/">'.$component.'</a> &raquo;';
         }
     }
 
@@ -48,27 +50,40 @@ if ($path == '') {
     echo '</h2>';
 }
 
-if (!file_exists($base . $path)) {
-    throw new \libAllure\exceptions\SimpleFatalError('Path not found: ' . $base . $path);
+if (! file_exists($base.$path)) {
+    throw new SimpleFatalError('Path not found: '.$base.$path);
 }
 
-$files = scandir($base . $path);
+$files = scandir($base.$path);
 
-echo '<ul class = "no-bullets">';
+$entries = [];
 foreach ($files as $dirfile) {
     if ($dirfile[0] == '.') {
         continue;
     }
 
-    if (is_dir($base . $path . $dirfile)) {
-        echo '<li><div class = "list-icon">&#128193;</div> <a href="viewMarkdown.php?path=' . $path . $dirfile . '/">' . $dirfile . '</a></li>';
-    } else {
-        $mimetype = mime_content_type($base . $path . $dirfile);
+    $entries[] = $dirfile;
+}
 
-        if ($mimetype == 'text/plain') {
-            echo '<li><div class = "list-icon">&#128441;</div> <a href="viewMarkdown.php?path=' . $path . '&amp;file=' . $dirfile . '">' . $dirfile . '</a></li>';
+echo '<ul class = "no-bullets">';
+if (count($entries) === 0) {
+    if ($path == '') {
+        echo '<p>No document repositories are published yet. This area is intended for homelab guides, stack write-ups, and config notes.</p>';
+    } else {
+        echo '<p>This folder is empty.</p>';
+    }
+} else {
+    foreach ($entries as $dirfile) {
+        if (is_dir($base.$path.$dirfile)) {
+            echo '<li><div class = "list-icon">&#128193;</div> <a href="/markdown?path='.$path.$dirfile.'/">'.$dirfile.'</a></li>';
         } else {
-            echo '<li><div class = "list-icon">&#128437;</div> <a href="repos/' . $path . '/' . $dirfile . '">' . $dirfile . '</a> (mimetype not supported)</li>';
+            $mimetype = mime_content_type($base.$path.$dirfile);
+
+            if ($mimetype == 'text/plain') {
+                echo '<li><div class = "list-icon">&#128441;</div> <a href="/markdown?path='.$path.'&amp;file='.$dirfile.'">'.$dirfile.'</a></li>';
+            } else {
+                echo '<li><div class = "list-icon">&#128437;</div> <a href="/repos/'.$path.'/'.$dirfile.'">'.$dirfile.'</a> (mimetype not supported)</li>';
+            }
         }
     }
 }
@@ -79,23 +94,23 @@ echo '</section><section>';
 if ($file != '') {
 
     // check file mimetype
-    $mimetype = mime_content_type($base . $path . $file);
+    $mimetype = mime_content_type($base.$path.$file);
 
     if ($mimetype != 'text/plain') {
-        echo 'Mimetype not supported: ' . $mimetype;
+        echo 'Mimetype not supported: '.$mimetype;
         require_once 'includes/widgets/footer.php';
-        die();
+        exit();
     }
 
-    $filepath = $base . $path . $file;
+    $filepath = $base.$path.$file;
 
-    if (!file_exists($filepath)) {
-        throw new \libAllure\exceptions\SimpleFatalError('File not found: ' . $filepath);
+    if (! file_exists($filepath)) {
+        throw new SimpleFatalError('File not found: '.$filepath);
     }
 
     $content = file_get_contents($filepath);
 
-    $parser = new \cebe\markdown\GithubMarkdown();
+    $parser = new GithubMarkdown;
     $md = $parser->parse($content);
 
     echo $md;

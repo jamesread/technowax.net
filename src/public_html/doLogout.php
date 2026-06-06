@@ -8,4 +8,4 @@ if (Session::isLoggedIn()) {
     Session::logout();
 }
 
-redirect('index.php', 'See ya!');
+redirect('/', 'See ya!');

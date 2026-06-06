@@ -3,6 +3,6 @@
 	{$page.content}
 
 	{if $page.canEdit}
-	<a href = "editWikiPage.php?title={$page.title}">Edit</a>
+	<a href = "/wiki/{$page.title}/edit">Edit</a>
 	{/if}
 </section>

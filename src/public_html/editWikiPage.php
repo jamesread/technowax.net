@@ -3,21 +3,22 @@
 require_once 'includes/common.php';
 require_once 'includes/classes/FormEditWikiPage.php';
 
+use libAllure\Sanitizer;
 use libAllure\Session;
 
-if (!Session::hasPriv('SUPERUSER')) {
-    redirect('index.php', 'You do not have the permissions for this.');
+if (! Session::hasPriv('SUPERUSER')) {
+    redirect('/', 'You do not have the permissions for this.');
 }
 
-libAllure\Session::requirePriv('SUPERUSER');
+Session::requirePriv('SUPERUSER');
 
-$sanitizer = \libAllure\Sanitizer::getInstance();
+$sanitizer = Sanitizer::getInstance();
 
 $f = new FormEditWikiPage($sanitizer->filterString('title'));
 
 if ($f->validate()) {
     $f->process();
-    redirect('viewWikiPage.php?title=' . $sanitizer->filterString('title'), 'Page edited.');
+    redirect(wikiUrl($sanitizer->filterString('title')), 'Page edited.');
 }
 
 require_once 'includes/widgets/header.php';

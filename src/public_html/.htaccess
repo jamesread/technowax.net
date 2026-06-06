@@ -1,0 +1,9 @@
+RewriteEngine On
+
+# Serve existing files and directories directly (static assets, legacy .php scripts).
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Forward all other requests to the application router.
+RewriteRule ^ index.php [L,QSA]
