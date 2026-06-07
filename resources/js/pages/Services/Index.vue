@@ -21,7 +21,7 @@ const page = usePage();
 
     <section>
         <h2>Services for self-hosters</h2>
-        <p>Practical tools for people who run their own software and infrastructure. No account required for lookups; account required for personal services.</p>
+        <p>Practical tools for people who run their own software and infrastructure. No account required to use the utilities listed here.</p>
         <p>See also <Link href="/projects">featured open source projects</Link> curated for this community.</p>
 
         <dl>
@@ -30,22 +30,12 @@ const page = usePage();
 
             <dt><Link href="/markdown">Document repos</Link></dt>
             <dd>Markdown files served from this site — intended for homelab notes, stack documentation, and config references you want to share or browse in one place.</dd>
-
-            <dt><Link href="/dyndns/updates">Dynamic DNS</Link></dt>
-            <dd>
-                <template v-if="page.props.auth.user">
-                    Record your current public IPv4 address from routers, scripts, or ddclient-compatible clients.
-                </template>
-                <template v-else>
-                    <Link href="/login">Log in</Link> or <Link href="/register">register</Link> to receive a personal update endpoint and view your update history.
-                </template>
-            </dd>
         </dl>
     </section>
 
     <section>
         <h2>Running your own stack</h2>
         <p>This instance is a development deployment. Production content will focus on open source software, self-hosting, and modern infrastructure without hype or vendor funnels.</p>
-        <p>If you are evaluating the site: join Discord for discussion, create an account here for dynamic DNS, and watch the document repos for published guides.</p>
+        <p>If you are evaluating the site: join Discord for discussion, create an account if you want account features, and watch the document repos for published guides.</p>
     </section>
 </template>

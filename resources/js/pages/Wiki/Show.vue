@@ -16,11 +16,17 @@ defineProps<{
 
 <template>
     <Head :title="page.displayTitle" />
-    <section>
-        <h2>{{ page.displayTitle }}</h2>
+    <section class="wiki-page">
+        <div class="page-header">
+            <h2>{{ page.displayTitle }}</h2>
+            <nav
+                v-if="page.canEdit"
+                class="page-actions"
+                aria-label="Page actions"
+            >
+                <Link :href="`/wiki/${page.title}/edit`">Edit</Link>
+            </nav>
+        </div>
         <div v-html="page.content" />
-        <p v-if="page.canEdit">
-            <Link :href="`/wiki/${page.title}/edit`">Edit</Link>
-        </p>
     </section>
 </template>

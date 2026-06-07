@@ -57,18 +57,10 @@ return new class extends Migration
             $table->timestamp('imported_at')->useCurrent();
         });
 
-        Schema::create('dyndns', function (Blueprint $table) {
-            $table->id();
-            $table->timestamp('timestamp')->useCurrent();
-            $table->string('ip_address', 45);
-            $table->string('ident')->nullable();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-        });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('dyndns');
         Schema::dropIfExists('featured_projects');
         Schema::dropIfExists('privileges_u');
         Schema::dropIfExists('privileges_g');

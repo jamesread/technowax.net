@@ -67,16 +67,4 @@ class LegacySiteTest extends TestCase
         $this->assertDatabaseHas('wiki_pages', ['title' => 'new-page']);
     }
 
-    public function test_dyndns_update_endpoint_records_an_update(): void
-    {
-        $user = User::factory()->create(['username' => 'dyndns-user']);
-
-        $this->get('/dyndns?update&user='.$user->id.'&ident=router')
-            ->assertOk();
-
-        $this->assertDatabaseHas('dyndns', [
-            'user_id' => $user->id,
-            'ident' => 'router',
-        ]);
-    }
 }

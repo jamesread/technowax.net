@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AccountController;
-use App\Http\Controllers\DynDnsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HtmlEntitiesController;
 use App\Http\Controllers\MarkdownController;
@@ -22,10 +21,6 @@ Route::match(['get', 'post'], '/indenter', [ToolsController::class, 'indenter'])
 Route::match(['get', 'post'], '/tools/team-maker', [ToolsController::class, 'teamMaker'])->name('tools.team-maker');
 Route::get('/markdown', [MarkdownController::class, 'index'])->name('markdown');
 Route::get('/html-entities', [HtmlEntitiesController::class, 'index'])->name('html-entities');
-
-Route::get('/dyndns', [DynDnsController::class, 'update'])->name('dyndns.update');
-Route::get('/dyndns.php', [DynDnsController::class, 'update']);
-Route::get('/dyndns/updates', [DynDnsController::class, 'updates'])->middleware('auth')->name('dyndns.updates');
 
 Route::get('/wiki/{title}', [WikiController::class, 'show'])->name('wiki.show');
 Route::get('/wiki/{title}/create', [WikiController::class, 'create'])->name('wiki.create');
